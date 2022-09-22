@@ -16,11 +16,26 @@ require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- My plugins here
   use 'arcticicestudio/nord-vim'
-  use 'kyazdani42/nvim-web-devicons'
-  use 'vim-airline/vim-airline'
-  use 'kyazdani42/nvim-tree.lua'
-  use 'tpope/vim-fugitive'
-  use {'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
+  use {"akinsho/toggleterm.nvim", tag = '*' }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 
+      'kyazdani42/nvim-web-devicons',
+      opt = true 
+    }
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = { 
+      'kyazdani42/nvim-web-devicons'
+    }
+  }
+  use {
+    'nvim-telescope/telescope.nvim', 
+    requires = { 
+      'nvim-lua/plenary.nvim'
+    } 
+  }
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
