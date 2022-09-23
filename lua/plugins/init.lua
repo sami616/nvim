@@ -15,29 +15,68 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- My plugins here
-  use 'arcticicestudio/nord-vim'
-  use {"akinsho/toggleterm.nvim", tag = '*' }
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 
-      'kyazdani42/nvim-web-devicons',
-      opt = true 
+    use {
+      'neovim/nvim-lspconfig'
     }
-  }
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = { 
-      'kyazdani42/nvim-web-devicons'
+    use {
+      'arcticicestudio/nord-vim'
     }
-  }
-  use {
-    'nvim-telescope/telescope.nvim', 
-    requires = { 
-      'nvim-lua/plenary.nvim'
-    } 
-  }
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
+    use {
+      'hrsh7th/nvim-cmp'
+    }
+    use {
+      'onsails/lspkind-nvim'
+    }
+    use {
+      'lukas-reineke/indent-blankline.nvim'
+    }
+    use { 
+      'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons'
+    }
+    use { 
+      'glepnir/lspsaga.nvim',
+      branch = 'main'
+    }
+    use {
+      'L3MON4D3/LuaSnip'
+    }
+    use {
+      'hrsh7th/cmp-nvim-lsp'
+    }
+    use {
+      'hrsh7th/cmp-buffer'
+    }
+    use {
+      'windwp/nvim-ts-autotag'
+    }
+    use {
+      'windwp/nvim-autopairs'
+    }
+    use { 
+      'nvim-treesitter/nvim-treesitter',
+      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
+    }
+    use {
+      'jose-elias-alvarez/null-ls.nvim'
+    }
+    use {
+      'MunifTanjim/prettier.nvim'
+    }
+    use { 
+      'nvim-lualine/lualine.nvim', 
+      requires ='kyazdani42/nvim-web-devicons'
+    }
+    use { 
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons'
+    }
+    use { 
+      'nvim-telescope/telescope.nvim',
+      requires = 'nvim-lua/plenary.nvim'
+    }
+      -- Automatically set up your configuration after cloning packer.nvim
+      -- Put this at the end after all plugins
     if packer_bootstrap then
       require('packer').sync()
     end
