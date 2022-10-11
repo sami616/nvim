@@ -14,72 +14,52 @@ local packer_bootstrap = ensure_packer()
 -- Use packer
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    -- My plugins here
-    use {
-      'neovim/nvim-lspconfig'
-    }
-    use {
-      'arcticicestudio/nord-vim'
-    }
-    use {
-      'hrsh7th/nvim-cmp'
-    }
-    use {
-      'onsails/lspkind-nvim'
-    }
-    use {
-      'lukas-reineke/indent-blankline.nvim'
-    }
-    use { 
-      'akinsho/bufferline.nvim',
-      requires = 'kyazdani42/nvim-web-devicons'
-    }
-    use { 
-      'glepnir/lspsaga.nvim',
-      branch = 'main'
-    }
-    use {
-      'L3MON4D3/LuaSnip'
-    }
-    use {
-      'hrsh7th/cmp-nvim-lsp'
-    }
-    use {
-      'hrsh7th/cmp-buffer'
-    }
-    use {
-      'windwp/nvim-ts-autotag'
-    }
-    use {
-      'windwp/nvim-autopairs'
-    }
-    use { 
-      'nvim-treesitter/nvim-treesitter',
-      run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
-    }
-    use {
-      'jose-elias-alvarez/null-ls.nvim'
-    }
-    use {
-      'MunifTanjim/prettier.nvim'
-    }
-    use { 
-      'nvim-lualine/lualine.nvim', 
-      requires ='kyazdani42/nvim-web-devicons'
-    }
-    use { 
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons'
-    }
-    use { 
-      'nvim-telescope/telescope.nvim',
-      requires = 'nvim-lua/plenary.nvim'
-    }
-      -- Automatically set up your configuration after cloning packer.nvim
-      -- Put this at the end after all plugins
+    -- LSP
+	use 'neovim/nvim-lspconfig'
+	-- CMP
+    use 'hrsh7th/nvim-cmp' -- Auto complete
+	use {
+	  "AckslD/nvim-neoclip.lua",
+  		requires = {
+    		{'nvim-telescope/telescope.nvim'},
+  		},
+  		config = function()
+     		require('neoclip').setup()
+  		end
+	}
+    use'L3MON4D3/LuaSnip' -- Snippet engine
+    use 'hrsh7th/cmp-buffer' -- Source for buffers
+    use 'saadparwaiz1/cmp_luasnip' -- Source for snippet engine
+	use 'hrsh7th/cmp-nvim-lsp' -- Source for lsp
+	use 'onsails/lspkind-nvim' -- Nice formatting of auto complete popup
+	-- Theme
+	use 'folke/tokyonight.nvim'
+	-- Misc
+    use 'windwp/nvim-autopairs' 
+	use { 'nvim-treesitter/nvim-treesitter', run = function() require('nvim-treesitter.install').update({ with_sync = true }) end } -- Syntax highlighting
+	use 'nvim-treesitter/nvim-treesitter-context'
+    use 'jose-elias-alvarez/null-ls.nvim' -- Formatting
+    use { 'nvim-lualine/lualine.nvim',  requires ='kyazdani42/nvim-web-devicons' } -- Status bar
+    use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' } -- Fuzzy find
+	use { "nvim-telescope/telescope-file-browser.nvim" }
+    use 'lukas-reineke/indent-blankline.nvim' -- Indent lines
+    use 'windwp/nvim-ts-autotag' -- Auto tags
+	 
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
     if packer_bootstrap then
       require('packer').sync()
     end
   end)
 
-  require('plugins/config')
+require('plugins/theme')
+require('plugins/auto-tags')
+require('plugins/line-indent')
+require('plugins/auto-brackets')
+require('plugins/lsp')
+require('plugins/cmp')
+require('plugins/null-ls')
+require('plugins/telescope')
+require('plugins/lualine')
+require('plugins/treesitter')
+require('plugins/treesitter-context')
