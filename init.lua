@@ -1,3 +1,4 @@
+-- Install package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,6 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Options
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.o.ignorecase = true
@@ -33,7 +35,10 @@ vim.o.scrolloff = 10
 vim.o.updatetime = 50
 
 
+-- Packages
 require('lazy').setup({
+
+  -- LSP
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -62,11 +67,16 @@ require('lazy').setup({
     end
   },
 
-  
+  -- Tabs for buffers
   { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons', config = {} },
+
+  -- Auto bracket pairs
   { 'windwp/nvim-autopairs',   config = {} },
+
+  -- Auto tag closing
   { 'windwp/nvim-ts-autotag',  config = {} },
 
+  -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -108,11 +118,11 @@ require('lazy').setup({
             node_decremental = "<bs>",
           },
         },
-
       })
     end
   },
 
+  -- Git
   {
     "kdheepak/lazygit.nvim",
     keys = { { "<leader>g", desc = "Git", mode = "n" } },
@@ -121,6 +131,7 @@ require('lazy').setup({
     end
   },
 
+  -- Theme
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -128,25 +139,26 @@ require('lazy').setup({
     config = function() vim.cmd.colorscheme('tokyonight') end
   },
 
-  {
-    'nvim-tree/nvim-web-devicons',
-    lazy = false,
-    priority = 999,
-    config = {},
-  },
-
+  -- Status line
   {
     'nvim-lualine/lualine.nvim',
     priority = 998,
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons' }
+    },
     config = {}
   },
 
+  -- Indent lines
   { 'lukas-reineke/indent-blankline.nvim', config = {} },
 
+  -- LSP status indicator
   { 'j-hui/fidget.nvim',                   config = {} },
 
+  -- Git status signs
   { 'lewis6991/gitsigns.nvim',             config = {} },
 
+  -- Telescope
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
@@ -154,11 +166,13 @@ require('lazy').setup({
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'nvim-tree/nvim-web-devicons' }
     },
     config = function()
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('file_browser')
-      vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Fuzzily find in buffer]' })
+      vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
+        { desc = '[/] Fuzzily find in buffer]' })
       vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F]ind [R]ecent' })
       vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = '[F]ind [B]uffers' })
       vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
@@ -175,7 +189,11 @@ require('lazy').setup({
         { desc = '[F]ile [E]xpolorer' })
     end
   },
+  
+  -- Comments
   { 'numToStr/Comment.nvim', config = {} },
+
+  -- Format on save with null-ls
   {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -209,6 +227,8 @@ require('lazy').setup({
       })
     end
   },
+
+  -- Prettier
   {
     'MunifTanjim/prettier.nvim',
     config = {
@@ -230,9 +250,8 @@ require('lazy').setup({
   },
 })
 
-
 ----------------------------
--- General
+-- General keymaps
 ----------------------------
 
 -- Save
@@ -259,8 +278,6 @@ vim.keymap.set('n', '<C-o', '<C-o>zz')
 vim.keymap.set('n', '<C-i>', '<C-i>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<PageUp>', '<C-u>zz')
-vim.keymap.set('n', '<PageDown>', '<C-d>zz')
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 
@@ -288,6 +305,9 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-w>v", "<C-v>")
 vim.keymap.set("n", "<C-w>h", "<C-h>")
 
+----------------------------
+-- Misc
+----------------------------
 
 -- Highlight Yanks
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
