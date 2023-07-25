@@ -81,6 +81,9 @@ require('lazy').setup({
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
+        keys = {
+            { "<leader>e", desc = "[E]xplorer" },
+        },
         config = function()
             require('neo-tree').setup({
                 window = {
