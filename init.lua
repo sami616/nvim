@@ -73,6 +73,23 @@ require('lazy').setup({
     -- Auto bracket pairs
     { 'windwp/nvim-autopairs',   config = {} },
 
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+            require('neo-tree').setup({
+                window = {
+                    position = 'right'
+                }
+            })
+            vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>')
+        end
+    },
     -- Auto tag closing
     { 'windwp/nvim-ts-autotag',  config = {} },
 
@@ -168,13 +185,11 @@ require('lazy').setup({
         dependencies = {
             { 'nvim-lua/plenary.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
-            { 'nvim-telescope/telescope-file-browser.nvim' },
             { 'nvim-tree/nvim-web-devicons' }
         },
         config = function()
             require('telescope').setup({ extensions = { file_browser = { path = '%:p:h' } } })
             require('telescope').load_extension('fzf')
-            require('telescope').load_extension('file_browser')
             vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
                 { desc = '[/] Fuzzily find in buffer]' })
             vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[F]ind [R]ecent' })
@@ -191,8 +206,6 @@ require('lazy').setup({
                 { desc = '[F]ind [S]ymbols (document)' })
             vim.keymap.set('n', '<leader>Fs', require('telescope.builtin').lsp_dynamic_workspace_symbols,
                 { desc = '[F]ind [S]ymbols (workspace)' })
-            vim.keymap.set('n', '<leader>fe', require('telescope').extensions.file_browser.file_browser,
-                { desc = '[F]ile [E]xpolorer' })
         end
     },
 
