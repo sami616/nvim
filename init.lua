@@ -87,7 +87,7 @@ require('lazy').setup({
                     position = 'right'
                 }
             })
-            vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>')
+            vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = "[E]xplorer"})
         end
     },
     -- Auto tag closing
