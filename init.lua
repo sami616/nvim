@@ -199,7 +199,7 @@ require('lazy').setup({
             require('telescope').load_extension('fzf')
             vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
                 { desc = '[/] Fuzzily find in buffer]' })
-            vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[F]ind [R]ecent' })
+            vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find Recently opened' })
             vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = '[F]ind [B]uffers' })
             vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
             vim.keymap.set('n', '<leader>fl', require('telescope.builtin').resume, { desc = '[F]ind [L]last' })
