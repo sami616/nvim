@@ -84,9 +84,17 @@ require('lazy').setup({
         keys = {
             { "<leader>e", desc = "[E]xplorer" },
         },
+        init = function()
+            if vim.fn.argc() == 1 then
+                local stat = vim.loop.fs_stat(vim.fn.argv(0))
+                if stat and stat.type == "directory" then
+                    require("neo-tree")
+                end
+            end
+        end,
         config = function()
             require('neo-tree').setup({ window = { position = 'right' } })
-            vim.keymap.set('n', '<leader>e', ':Neotree reveal=true toggle=true<CR>', { desc = "[E]xplorer" })
+            vim.keymap.set('n', '<leader>e', ':Neotree reveal toggle<CR>', { desc = "[E]xplorer" })
         end
     },
     -- Auto tag closing
