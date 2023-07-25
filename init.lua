@@ -85,12 +85,8 @@ require('lazy').setup({
             { "<leader>e", desc = "[E]xplorer" },
         },
         config = function()
-            require('neo-tree').setup({
-                window = {
-                    position = 'right'
-                }
-            })
-            vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = "[E]xplorer"})
+            require('neo-tree').setup({ window = { position = 'right' } })
+            vim.keymap.set('n', '<leader>e', ':Neotree reveal=true toggle=true<CR>', { desc = "[E]xplorer" })
         end
     },
     -- Auto tag closing
@@ -187,7 +183,7 @@ require('lazy').setup({
         tag = '0.1.2',
         dependencies = {
             { 'nvim-lua/plenary.nvim' },
-            { 'nvim-telescope/telescope-fzf-native.nvim',  build = 'make' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             { 'nvim-tree/nvim-web-devicons' }
         },
         config = function()
