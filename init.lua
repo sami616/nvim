@@ -34,6 +34,8 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.o.updatetime = 50
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Packages
 require('lazy').setup({
@@ -295,9 +297,26 @@ require('lazy').setup({
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 			{ 'nvim-tree/nvim-web-devicons' },
 		},
+		-- open telescope when running `nvim` inside a directory
+		init = function()
+			vim.api.nvim_create_autocmd('VimEnter', {
+				callback = function()
+					local argCount = vim.fn.argc()
+					if argCount == 0 then
+						require('telescope.builtin').find_files()
+					elseif argCount == 1 then
+						local stat = vim.loop.fs_stat(vim.fn.argv(0))
+						if stat and stat.type == 'directory' then
+							require('telescope.builtin').find_files()
+						end
+					end
+				end,
+			})
+		end,
 		config = function()
 			require('telescope').setup({ extensions = { file_browser = { path = '%:p:h' } } })
 			require('telescope').load_extension('fzf')
+
 			vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Fuzzily find in buffer]' })
 			vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find Recently opened' })
 			vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = '[F]ind [B]uffers' })
