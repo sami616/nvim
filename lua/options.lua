@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 vim.g.maplocalleader = ' '
 vim.opt.ignorecase = true
 vim.opt.cursorline = true

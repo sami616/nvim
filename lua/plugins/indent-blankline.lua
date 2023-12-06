@@ -1,4 +1,13 @@
 return {
-    'lukas-reineke/indent-blankline.nvim',
-    config = { show_current_context = true },
+	'lukas-reineke/indent-blankline.nvim',
+	main = 'ibl',
+	opts = {
+		indent = {
+			char = '▏',
+		},
+		scope = {
+			show_start = false,
+			show_end = false,
+		},
+	},
 }
