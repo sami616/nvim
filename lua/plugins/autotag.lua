@@ -1,1 +1,1 @@
-return { 'windwp/nvim-ts-autotag', config = {} }
+-- return { 'windwp/nvim-ts-autotag', config = {} }

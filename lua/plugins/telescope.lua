@@ -7,7 +7,9 @@ return {
 		{ 'nvim-tree/nvim-web-devicons' },
 	},
 	config = function()
-		require('telescope').load_extension('fzf')
+		local telescope = require('telescope')
+		telescope.load_extension('fzf')
+
 		vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[/] Fuzzily find in buffer]' })
 		vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find Recently opened' })
 		vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = '[F]ind [B]uffers' })
