@@ -4,14 +4,12 @@ return {
 	dependencies = {
 		{ 'nvim-tree/nvim-web-devicons' },
 	},
-	config = {
-		sections = {
-			lualine_c = {
-				{
-					'filename',
-					path = 1,
-				},
+	config = function()
+		require('lualine').setup({
+			sections = {
+				lualine_c = { { 'filename', path = 1 } },
 			},
-		},
-	},
+			theme = 'poimandres',
+		})
+	end,
 }

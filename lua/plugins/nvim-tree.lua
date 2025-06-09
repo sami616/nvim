@@ -7,13 +7,13 @@ return {
 	},
 	config = function()
 		require('nvim-tree').setup({
-			view = { side = 'right', adaptive_size = true },
+			view = { width = '25%', side = 'left', adaptive_size = true },
 			actions = {
 				open_file = {
 					quit_on_open = true,
 				},
 			},
 		})
-		vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = '[E]xplorer' })
+		-- vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { desc = '[E]xplorer' })
 	end,
 }
