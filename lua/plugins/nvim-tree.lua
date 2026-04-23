@@ -14,6 +14,6 @@ return {
 				},
 			},
 		})
-		-- vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { desc = '[E]xplorer' })
+		vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>', { desc = '[E]xplorer' })
 	end,
 }

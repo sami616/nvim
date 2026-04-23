@@ -1,1 +1,1 @@
-return { 'windwp/nvim-autopairs', config = {} }
+return { 'windwp/nvim-autopairs', opts = {} }

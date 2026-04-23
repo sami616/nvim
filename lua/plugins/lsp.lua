@@ -15,10 +15,10 @@ return {
 						local masonlsp = require('mason-lspconfig')
 
 						masonlsp.setup({
-							automatic_enable = false,
 							ensure_installed = {
 								'rust_analyzer',
 								'ts_ls',
+								'copilot_ls',
 								'tailwindcss',
 								'cssls',
 								'html',

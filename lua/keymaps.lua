@@ -19,5 +19,6 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move right to split' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move down to split' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move up to split' })
 vim.keymap.set('n', '<leader>os', '<C-w>v <CR> <C-w>l', { desc = '[O]pen [S]plit' })
+vim.keymap.set('n', '<leader>ss', '<C-w>= <CR>', { desc = '[S]ize [S]plit' })
 -- This is due to me swapping ' with ; on my keyboard
 vim.keymap.set('n', "'", ';', { noremap = true })
